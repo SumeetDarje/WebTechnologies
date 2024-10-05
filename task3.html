@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+
+
+    <script>
+        var a = Number(prompt("Enter how many number "))
+        var b=[],sum=0;
+        for (let i=0;i<a;i++) {
+            b[i]= Number(prompt(`${i+1}.Enter the number: `))
+            document.write(`<h1> ${b[i]}`)
+            sum=sum+b[i];
+        }
+        document.write(`<h1>Sum is ${sum}`) 
+        document.write(`<h1> In reverse order `)
+        
+
+        // for(let i=1;i<=a;i++){
+        //     rev=b.pop()
+        //     document.write(`<h1> ${rev}`)
+        // }
+        
+    
+        for(let i=b.length-1;i>=0;i--){
+            document.write(`<h1> ${b[i]}`)
+        }
+        
+    </script>
+    
+</body>
+</html>
