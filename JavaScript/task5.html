@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+
+</head>
+<body>
+    
+
+    <script>
+
+        let a=[25,9,12,189,78,141,50]
+
+        let b=a.map((e)=> e>100 ? "High":"Lo")
+        console.log(b);
+        
+        let c=a.filter((e)=> e%5==0)
+        console.log(c);
+        
+        let max=a[0]
+        for(let i=0;i<a.length;i++)
+        if(a[i]>max){
+            max=a[i]
+        }
+        let d=a.map((e)=> max)
+        console.log(d);
+
+        let e=a.map((e)=> e%10)
+        console.log(e);
+        
+        
+        
+
+    </script>
+</body>
+</html>
