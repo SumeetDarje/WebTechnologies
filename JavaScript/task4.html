@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+
+    <style>
+        h1{
+            color: red;
+        }
+        h2{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        a=Number(prompt("Enter how many String: "))
+        var b=[]
+        for(let i=0;i<a;i++){
+            b[i]=window.prompt(`${i+1}.Enter the String: `)
+            document.write(`<h1> ${b[i]}`)
+        }
+        document.write(`<h2> String with length less then 7 are `)
+        for(let i=0;i<a;i++){
+            if(b[i].length<7){
+                document.write(`<h2> ${b[i]}`)
+            }
+        }
+        var min=b[0].length,pos=0;
+        for(let i=0;i<a;i++){
+            if(b[i].length<min){
+                min=b[i].length
+                pos=i;
+            }
+        }
+        document.write(`<h1>String with minimum length is ${b[pos]}`)
+        
+
+    </script>
+</body>
+</html>
