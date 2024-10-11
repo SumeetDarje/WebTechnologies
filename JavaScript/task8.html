@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+    
+    <style>
+        #ranga{
+            width: 100px;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            color: white;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="ranga"></div>
+
+    <script>
+
+        let ogcolor=document.getElementById("ranga")
+        let color=["red","green","yellow","blue","pink","black"]
+        
+        let index=0;
+        let mt=0,ml=0;
+      
+        window.setInterval(changeColor,1000)
+        function changeColor(){
+           ogcolor.style.backgroundColor=color[index]
+           ogcolor.innerHTML=color[index]
+           index=(index+1)%color.length
+           
+           mt=mt+30;ml+=30
+           
+           ogcolor.style.marginTop=mt+"px"
+           ogcolor.style.marginLeft=ml+"px"
+           
+    }
+
+    </script>
+
+    
+</body>
+</html>
