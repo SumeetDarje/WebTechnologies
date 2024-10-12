@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #special{
+            text-align: center;
+            margin-top: 30px;           
+        }
+        button{
+            padding: 10px;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+        }
+        #chimg{
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="special"> <button onclick="changeImg('virat')">Virat</button> 
+        <button onclick="changeImg('mahendra')">Mahendra</button> 
+        <button onclick="changeImg('rohit')">Rohit</button> 
+        <button onclick="changeImg('hardik')">Hardik</button> 
+        <button onclick="changeImg('surya')">Surya</button> 
+    </div>
+    <div id="chimg">
+        <img src="" alt="" id="imgc">
+    </div>
+
+    <script>
+
+        let eleImg=document.querySelector("#special")
+        let imageCh=document.querySelector("#imgc")
+        
+        function changeImg(img){
+            imageCh.setAttribute("src","/JavaScript/img/"+img+".jpg")
+        }
+
+    </script>
+</body>
+</html>
