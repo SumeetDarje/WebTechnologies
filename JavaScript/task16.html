@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products Analysis</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style></style>
+  </head>
+  <body>
+    <div class="container w-50 mx-auto my-5 text-center">
+       <button onclick="changeFruit(0)" class="btn btn-danger m-2">Grapes</button
+      ><button onclick="changeFruit(1)" class="btn btn-danger m-2">Mango</button
+      ><button onclick="changeFruit(2)" class="btn btn-danger m-2">Banana</button
+      ><button onclick="changeFruit(3)" class="btn btn-danger m-2">Apple</button>
+    </div>
+    <div class="container-product w-50 mx-auto my-5 text-center">
+      <div id="name" class="text-bg-danger my-3 p-1"></div>
+      <div><img src="" alt="" id="image" /></div>
+      <div id="price" class="text-danger"></div>
+      <div id="stock"></div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let productList = [
+        {
+          name: "Grapes",
+          image: "grapes.jpg",
+          unit: "kg",
+          mrp: 120,
+          discount: 10,
+          inStock: true,
+          qty: 0,
+        },
+        {
+          name: "Mango",
+          image: "mango.jpg",
+          unit: "doz",
+          mrp: 500,
+          discount: 8,
+          inStock: true,
+          qty: 0,
+        },
+        {
+          name: "Banana",
+          image: "banana.jpg",
+          unit: "doz",
+          mrp: 60,
+          discount: 0,
+          inStock: false,
+          qty: 0,
+        },
+        {
+          name: "Apple",
+          image: "apple.jpg",
+          unit: "kg",
+          mrp: 180,
+          discount: 7,
+          inStock: true,
+          qty: 0,
+        },
+      ];
+      let ele_name = document.getElementById("name");
+      let ele_image = document.getElementById("image");
+      let ele_price = document.getElementById("price");
+      let ele_stock = document.getElementById("stock");
+
+        function changeFruit(fruit){
+            ele_name.innerHTML=`${productList[fruit].name}`
+            ele_image.src="/JavaScript/img/"+productList[fruit].image
+            ele_price.innerHTML=`Rs.${productList[fruit].mrp} per ${productList[fruit].unit}`
+            
+            if(productList[fruit].inStock==true)
+                ele_stock.innerHTML=`(In Stock)`
+            else
+                ele_stock.innerHTML=`(Out In Stock)`
+
+        }
+
+
+    </script>
+  </body>
+</html>
