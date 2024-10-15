@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      .myborder {
+        border: 3px solid black; 
+      }
+      button {
+        padding: 4px;
+        margin: 4px;
+        border-radius: 5px;
+        border: none;
+      }
+      .summary {
+        text-align: justify;
+      }
+      .icons {
+        font-size: 0.8em;
+      }
+      .container-resume {
+        width: 80%;
+      }
+      .bg-color {
+        background-color: cornflowerblue;
+      }
+      .info {
+        color: wheat;
+      }
+
+      @media (min-width: 780px) {
+        .container {
+          max-width: 80%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid container-resume my-5">
+      <!-- navigation-bar -->
+      <div class="row bg-color justify-content-end mb-5">
+        <div class="col-12 col-lg-6 text-end p-3">
+          <button class="">Home</button>
+          <button class="">Education</button>
+          <button class="">Skills</button>
+          <button class="">Personal Information</button>
+        </div>
+      </div>
+      <!-- summary -->
+      <div
+        class="row justify-content-around align-items-center home bg-color p-3"
+      >
+        <div class="col-6 col-md-4">
+          <div class="text-center">
+            <img
+              src="/JavaScript/img/virat.jpg"
+              class="img-fluid rounded-4"
+              alt=""
+            />
+          </div>
+          <h4 class="text-center text-name">Sumeet Darje</h4>
+        </div>
+        <div class="col-12 col-md-8 summary info">
+          <h3>
+            Courteous and Enthusiastic, I am an Engineering student from SCOE
+            with interests in modern day technology, researches and upcoming
+            innovations. I enjoy learning new skills and so I constantly seek
+            for ooportunities for upgrading my skills. Currently I am looking
+            for an Internship in Web Development.
+          </h3>
+        </div>
+        <div class="col-12 col-md-8 summary bg-color info">
+          <h2 class="text-start">Education</h2>
+          <div class="mx-auto">
+            <h5 class="">
+              <span class="icons"><i class="fa-solid fa-circle"></i></span> B.E.
+              (Information Technology)
+            </h5>
+
+            <h6 class="ps-5">Sinhagad College of Engineering</h6>
+            <h6 class="ps-5">2018-22</h6>
+            <h5 class="">
+              <span class="icons"><i class="fa-solid fa-circle"></i></span> Jr.
+              College
+            </h5>
+            <h6 class="ps-5">Deogiri College, Aurangabad</h6>
+            <h6 class="ps-5">2016-18</h6>
+            <h5 class="">
+              <span class="icons"><i class="fa-solid fa-circle"></i></span>
+              Matriculation
+            </h5>
+            <h6 class="ps-5">PODAR (CICSE), AURANGABAD</h6>
+            <h6 class="ps-5">2016</h6>
+          </div>
+        </div>
+        <div class="col-8 col-lg-8 summary info">
+          <h2 class="text-start">Skills</h2>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span> C
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span> C++
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span> Python
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span> Java
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span>
+            JavaScript
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span> HTML +
+            CSS
+          </h5>
+        </div>
+        <div class="col-12 col-lg-8 summary info">
+          <h2 class="text-start">Personal Details</h2>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span>
+            Birthdate:22.04.2000
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span>
+            Address: Pune, Maharashtra
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span>
+            Email-id: rushabh22runwal@gmail.com
+          </h5>
+          <h5 class="">
+            <span class="icons"><i class="fa-solid fa-circle"></i></span>
+            Mobile: 1122334455
+          </h5>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/b7e4d3df3d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+        let ele_info = document.querySelectorAll(".info");
+        ele_info.forEach((e)=> {
+            e.style.display="none"
+        })
+        let ele_buttons = document.querySelectorAll("button")
+        ele_buttons.forEach((e,index)=>{
+            e.addEventListener("click",()=>{
+                console.log(index);
+                //show only one info, hide others
+                ele_info.forEach((ele,i)=>{
+                    if(index==i){
+                        ele.style.display="block"
+                    }else{
+                        ele.style.display="none"
+                    }
+                })
+            })
+        })
+    </script>
+  </body>
+</html>
