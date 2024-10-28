@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplication Table</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* .myborder {
+        border: 2px solid black;
+      } */
+      .table {
+        font-size: 30px;
+      }
+      .color{
+        color: skyblue;
+        font-size: x-large;
+      }
+    </style>
+  </head>
+  <div class="text-center mt-5">
+    <input
+      type="text"
+      name=""
+      id="input"
+      size="60"
+      class="p-2"
+      placeholder="Enter a number for its multiplication table"
+    />
+  </div>
+  <div class="text-center mt-3">
+    <button class="btn btn-primary">Go Ahead</button>
+  </div>
+  <div class="text-center mt-3 text-danger message"></div>
+  <div class="row p-2 mx-auto justify-content-center myborder">
+    <div class="containrr col-12 col-sm-8 col-md-6 col-lg-6 text-center color myborder"></div>
+  </div>
+
+  <body>
+    <script>
+      let eleContainer = document.querySelector(".containrr");
+      let eleInput = document.querySelector("#input");
+      let eleMessage = document.querySelector(".message");
+      let eleButton = document.querySelector("button");
+
+      eleInput.addEventListener(`keyup`,()=>{
+        let num=eleInput.value 
+        if(isNaN(num)){
+            eleMessage.innerHTML=`Enter correct Input!`
+        }
+        else{
+            eleMessage.innerHTML=``
+        }
+      })
+
+      eleButton.addEventListener(`click`,()=>{
+            let i=1
+            let id=setInterval(()=>{
+            let a=Number(eleInput.value)
+            
+            eleContainer.innerHTML+=`<div>${eleInput.value} * ${i} = ${eleInput.value*i} </div>`
+          speak(`${eleInput.value} * ${i} = ${eleInput.value*i}`)
+          i++
+          if(i>10){
+            clearInterval((id))
+          }
+        },2000)
+        //   for(let i=1;i<=10;i++){
+        //         setInterval(()=>{
+        //         eleMessage.innerHTML+=`<h1>${a} * ${i} = ${a*i}`
+        //         },2000)
+        //     }
+
+      })
+      
+
+      
+
+
+      function speak(text) {
+        let speech = new SpeechSynthesisUtterance();
+        speech.lang = "en-US";
+        speech.text = text;
+        speech.volume = 1;
+        speech.rate = 1;
+        speech.pitch = 1;
+        window.speechSynthesis.speak(speech);
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
