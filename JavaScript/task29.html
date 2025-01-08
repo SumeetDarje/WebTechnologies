@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Exam</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-size: 30px;
+      }
+      .mainborder {
+        border: 13px double blue;
+      }
+      .myborder {
+        border: 3px solid blue;
+      }
+      #block {
+        width: 250px;
+        height: 200px;
+        background-color: grey;
+      }
+      textarea {
+        max-width: 100%;
+        height: auto;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row justify-content-center mt-2">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 mainborder p-2">
+        <div class="text-center text-primary attempt-info"></div>
+        <div class="text-center mt-5">
+          <button class="btn btn-primary btn-question">Q1</button>
+          <button class="btn btn-primary btn-question">Q2</button>
+          <button class="btn btn-primary btn-question">Q3</button>
+          <button class="btn btn-primary btn-question">Q4</button>
+          <button class="btn btn-primary btn-question">Q5</button>
+        </div>
+        <div id="" class="mx-auto my-5 text-center">
+          <textarea
+            readonly
+            name=""
+            id="question"
+            cols="50"
+            rows="5"
+            class="fw-bold p-2 border-0"
+          ></textarea>
+        </div>
+        <div class="text-center text-danger message"></div>
+        <div class="row">
+          <div class="col-2 text-end my-2">
+            <label for="option-a">A</label>
+            <input type="radio" name="option-number" value="A" id="option-a" />
+          </div>
+          <div class="col-10 option my-2"></div>
+          <div class="col-2 text-end my-2">
+            <label for="option-b">B</label>
+            <input type="radio" name="option-number" value="B" id="option-b" />
+          </div>
+          <div class="col-10 option my-2"></div>
+          <div class="col-2 text-end my-2">
+            <label for="option-c">C</label>
+            <input type="radio" name="option-number" value="C" id="option-c" />
+          </div>
+          <div class="col-10 option my-2"></div>
+          <div class="col-2 text-end my-2">
+            <label for="option-d">D</label>
+            <input type="radio" name="option-number" value="D" id="option-d" />
+          </div>
+          <div class="col-10 option my-2"></div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-dark submit-button">Submit Answer</button>
+        </div>
+      </div>
+    </div>
+    <!-- row ends -->
+    <script>
+      let list = [
+        {
+          question: "When we run a C++ program, _____ function gets executed.",
+          optionA: "start()",
+          optionB: "system()",
+          optionC: "main()",
+          optionD: "include()",
+          answer: "C",
+          answerGiven: "",
+          answered: false,
+          message: "",
+        },
+        {
+          question: "What punctuation ends most lines of C/C++ code?",
+          optionA: ". (dot)",
+          optionB: "; (semi-colon)",
+          optionC: ": (colon)",
+          optionD: ", (comma)",
+          answer: "B",
+          answerGiven: "",
+          answered: false,
+          message: "",
+        },
+        {
+          question: "C language was invented by _______",
+          optionA: "Bill Gates",
+          optionB: "Guido van Rossum",
+          optionC: "Bjarne Stroustrup",
+          optionD: "Dennis Ritchie",
+          answer: "D",
+          answerGiven: "",
+          answered: false,
+          message: "",
+        },
+        {
+          question:
+            "A C/C++ program can not be compiled until all of its ___ errors have been corrected.",
+          optionA: "Logical",
+          optionB: "Run-time",
+          optionC: "Syntax",
+          optionD: "All of above",
+          answer: "C",
+          answerGiven: "",
+          answered: false,
+          message: "",
+        },
+        {
+          question:
+            "The conversion specifier to be used in printf() function for a character is _",
+          optionA: "%ch",
+          optionB: "%f",
+          optionC: "%c",
+          optionD: "%d",
+          answer: "C",
+          answered: false,
+          message: "",
+        },
+      ];
+      let eleQuestionTextArea = document.querySelector("#question");
+      let eleSubmitButton = document.querySelector(".submit-button");
+      let eleQuestionButtons = document.querySelectorAll(".btn-question");
+      let eleOptions = document.querySelectorAll(".option");
+      let eleOptionsRadioButtons = document.querySelectorAll(
+        "input[type='radio']"
+      );
+      let eleMessage = document.querySelector(".message");
+      let eleAttemptInfo = document.querySelector(".attempt-info");
+      let questionNumber,
+        attemptedQuestions = 0;
+      let options = ["optionA", "optionB", "optionC", "optionD"];
+      let prevQuestionButton = null;
+      eleSubmitButton.disabled = true;
+      eleQuestionButtons.forEach((e, index) => {
+        e.addEventListener("click", () => {
+          // A question button is clicked.
+          if (prevQuestionButton == null) {
+            prevQuestionButton = e;
+          }
+          prevQuestionButton.style.backgroundColor = "blue";
+          e.style.backgroundColor = "lightblue";
+          prevQuestionButton = e;
+          questionNumber = index;
+          showQuestionAndOptions();
+        });
+      });
+      function showQuestionAndOptions() {
+        // show the question
+        eleQuestionTextArea.innerHTML = list[questionNumber].question;
+        // show the four options
+        eleOptions.forEach((eO, i) => {
+          let option = options[i];
+          eO.innerHTML = list[questionNumber][option];
+        });
+        // If answered, show corresponding message
+        eleMessage.innerHTML = list[questionNumber].message;
+        // If answered/not answered, disable/enable radio buttons and submit button
+        enableDisableButtons();
+      }
+
+      //onces the questions ans is submitted all the buttons are disabled 
+      function enableDisableButtons() {
+        eleOptionsRadioButtons.forEach((e,i)=>{
+            if(e.checked){
+                e.checked=false
+            }
+            if(list[questionNumber].answered){
+                e.disabled=true;
+            }else{
+                e.disabled=false
+            }
+        });
+      }
+       
+      //this enable submit button
+      eleOptionsRadioButtons.forEach((e,i)=>{
+        e.addEventListener(`click`,()=>{
+            eleSubmitButton.disabled=false
+        })
+      })
+
+      // At the beginning, show question number 1
+      eleQuestionButtons[0].click();
+
+      // Answer is being submitted by clicking "submit" button
+      eleSubmitButton.addEventListener("click", () => {
+     
+        eleOptionsRadioButtons.forEach((e,i)=>{
+          if(e.checked){
+            answerGiven=e.value;
+            // console.log(answerGiven);
+              if(answerGiven==list[questionNumber].answer){
+                list[questionNumber].message =`Correct...The ans is ${answerGiven}`;
+                showMessage()
+              }else{
+                list[questionNumber].message=`You Ansered ${answerGiven}. Correct ans is ${list[questionNumber].    answer}`;
+                showMessage()
+              }
+              list[questionNumber].answered=true
+              list[questionNumber].answerGiven=answerGiven
+              enableDisableButtons();
+            } 
+        })
+        attemptedQuestions++;
+        showAttempt();
+      });
+
+      function showMessage(){
+        eleMessage.innerHTML=list[questionNumber].message;
+      }
+
+      function showAttempt(){
+        if(attemptedQuestions==1){
+            eleAttemptInfo.innerHTML=`Attempted ${attemptedQuestions} question`;
+        }else if(attemptedQuestions > 1 && attemptedQuestions <5){
+            eleAttemptInfo.innerHTML=`Attempted ${attemptedQuestions} question`;
+        }else{
+            eleAttemptInfo.innerHTML=`Attempted ${attemptedQuestions} question`;
+    
+        //find total marks
+        let marks=0;
+        list.forEach((e,i)=>{
+            if(e.answer==answerGiven){
+                marks++;
+            }
+        });
+        
+        // display total marks
+        let html="";
+        if(marks==0){
+            html=`You answered all wrong`;
+        }else if(marks==1){
+            html=`You Scored only 1 mark`;
+        }else{
+            html=`You Scored ${marks} marks out of 5`
+        }
+        eleAttemptInfo.innerHTML+=`. ${html}`
+      }
+    }
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Distance</title>
+    <style>
+      body {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: 16px;
+      }
+      #container {
+        background-color: blue;
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      #container-text {
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      input[type="text"] {
+        margin: 10px auto;
+        font-size: 30px;
+        width: 80%;
+        text-align: center;
+      }
+      .distance {
+        font-size: 30px;
+        text-align: center;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <input
+        type="text"
+        id="ip"
+        placeholder="Enter distance in km"
+      />
+    </div>
+    <div id="container-text">
+      <div id="m" class="distance"></div>
+      <div id="ft" class="distance"></div>
+      <div id="inches" class="distance"></div>
+    </div>
+
+    <script>
+
+        let eleInput=document.querySelector("#ip");
+        let eleCalculate=document.querySelectorAll(".distance")
+
+
+        eleInput.addEventListener(`keyup`,()=>{
+            if(eleInput.value){
+                let meter=Number(eleInput.value)*1000
+                eleCalculate[0].innerHTML=`In Meters->${meter}`
+                let ft=Number(eleInput.value)*3000
+                eleCalculate[1].innerHTML=`In Feets->${ft}`
+                let inch=Number(eleInput.value)*36000
+                eleCalculate[2].innerHTML=`In Inches->${inch}`
+            }
+            else{
+                eleCalculate[0].innerHTML=``
+                eleCalculate[1].innerHTML=``
+                eleCalculate[2].innerHTML=``
+            }
+            
+
+                // e.innerHTML=`Hello ${i}`
+                // let num=Number(eleInput.value)
+                // // console.log(n);
+                //     if(i==0){
+                //     num = num*1000
+                //     e.innerHTML=`In meters->${num}`
+                //     }
+                //     if(i==1){    
+                //     num1 = num*3000
+                //     e.innerHTML=`In Feets->${num1}`
+                //     }
+                //     if(i==2){
+                //     num2 = num*36000
+                //     e.innerHTML=`In Inches->${num2}`
+                //     }   
+                //     if(num==0){
+                //         e.innerHTML=` `
+                //     }
+
+                
+
+            })
+        
+
+    </script>
+  </body>
+</html>

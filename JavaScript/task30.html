@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>City Selection</title>
+    <style>
+      body {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: 20px;
+      }
+      #container {
+        background-color: red;
+        width: 50%;
+        margin: 150px auto;
+        padding: 20px;
+        text-align: center;
+        color: white;
+      }
+      #container div {
+        margin: 20px;
+      }
+      select {
+        font-size: 20px;
+        padding: 5px;
+      }
+      button {
+        font-size: 15px;
+        padding: 5px;
+      }
+      span {
+        background-color: yellow;
+        color: red;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div>
+        Select State:
+        <select name="state" id="state"></select>
+      </div>
+      <div>
+        Select City:
+        <select name="city" id="city"></select>
+      </div>
+      <div id="description"></div>
+    </div>
+
+    <script>
+      var data = [
+        {
+          state: "Maharashtra",
+          cities: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+        },
+        { 
+          state: "Madhya Pradesh", 
+          cities: ["Indore", "Bhopal"] 
+        },
+        {
+          state: "Gujrat",
+          cities: ["Ahmedabad", "Surat", "Jamnagar", "Vadodara", "Rajkot"],
+        },
+        {
+            state: "Rajsthan",
+            cities: ["Jaipur", "Jodhpur", "Bikaner", "Udaipur"],
+        },
+    ];
+    
+    let eleSelectState = document.querySelector("#state");
+    let eleSelectCity = document.querySelector("#city");
+    var eleDescription = document.querySelector("#description");
+    var selectedStateIndex, selectedState, selectedCityIndex, selectedCity;
+    
+    init();
+    
+    function  init()
+    {
+        fillStates() ;
+        fillCities();
+        showDescription();
+    }
+      eleSelectState.addEventListener("click", () => {
+        fillCities();
+      });
+      eleSelectCity.addEventListener("click", () => {
+        showDescription();
+      });
+      function fillStates() {
+        let html = "";
+        for (let i = 0; i < data.length; i++) {
+          html += `<option >${data[i].state} </option>`;
+        } //for
+        eleSelectState.innerHTML = html;
+      }
+
+      function fillCities() {
+        selectedStateIndex = eleSelectState.selectedIndex;
+        selectedState = data[selectedStateIndex].state;
+        var html = "";
+        for (let i = 0; i < data[selectedStateIndex].cities.length; i++) {
+          html += `<option >${data[selectedStateIndex].cities[i]} </option>`;
+        } //for
+        eleSelectCity.innerHTML = html;
+        showDescription();
+      }
+      function showDescription() {
+        selectedCityIndex = eleSelectCity.selectedIndex;
+        selectedCity = data[selectedStateIndex].cities[selectedCityIndex];
+        eleDescription.innerHTML = `You have chosen <span>${selectedCity}</span> city of <span>${selectedState}</span> state!`;
+      }
+    </script>
+  </body>
+</html>
