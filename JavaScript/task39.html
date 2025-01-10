@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    
+
+    <script>
+         function findSq(num){
+            return p = new Promise((callbackSuccess,callbackError)=>{
+                window.setTimeout(()=>{
+                    console.log(num*100);
+                    callbackSuccess(num*100);
+                },2000)
+            });
+         }
+
+         cal();
+         async function cal(){
+           let num= await findSq(2);
+           num= await findSq(num);
+           num= await findSq(num);
+           num= await findSq(num);
+         }
+
+    </script>
+
+</body>
+</html>
