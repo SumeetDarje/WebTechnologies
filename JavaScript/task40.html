@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    
+
+    <script>
+        let data=["H","E","L","L","O"]
+        let i=0;
+
+        function myData(){
+            return p = new Promise((cbs,cbe)=>{
+                window.setTimeout(() => {
+                    console.log(data[i++]);
+                    cbs();
+                }, 2000);
+            });
+        }
+        callMe()
+        async function callMe() {
+            for (let a = 0; a < data.length; a++) {
+                await myData();
+                
+            }
+            // await myData();
+            // await myData();
+            // await myData();
+            // await myData();
+        }
+
+    </script>
+
+</body>
+</html>
