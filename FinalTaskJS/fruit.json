@@ -14,7 +14,7 @@
       "name": "Mango",
       "unit": "doz",
       "mrp": "500",
-      "discount": "8",
+      "discount": "9",
       "type": "Organic",
       "stock": "no",
       "image": "mango.jpg",
@@ -198,11 +198,10 @@
       "name": "Dragon",
       "image": "dragon.jpg",
       "unit": "piece",
-      "mrp": 60,
-      "discount": 0,
-      "inStock": true,
-      "qty": 0,
-      "type": "Non-Organic"
+      "mrp": "70",
+      "discount": "0",
+      "type": "Non-Organic",
+      "stock": "yes"
     },
     {
       "name": "Add1",
@@ -213,6 +212,16 @@
       "stock": "no",
       "image": "Default.jpg",
       "id": "a9f4"
+    },
+    {
+      "name": "Add2",
+      "unit": "doz",
+      "mrp": "140",
+      "discount": "0",
+      "type": "Organic",
+      "stock": "yes",
+      "image": "Default.jpg",
+      "id": "2e28"
     }
   ]
 }
