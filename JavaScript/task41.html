@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignemnt 51</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        font-size: 18px;
+      }
+      #wrapper {
+        width: 1000px;
+      }
+      #container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 20px auto;
+        width: 100vw;
+        background-color: white;
+        padding: 10px;
+      }
+      .container-player {
+        padding: 5px;
+        margin: 2px 2px;
+      }
+      #btn-wrapper {
+        text-align: center;
+        margin-top: 50px;
+      }
+      .player-info {
+        width: 60%;
+        text-align: center;
+      }
+      button {
+        padding: 10px;
+        font-size: 20px;
+        background-color: cornflowerblue;
+        color: yellow;
+        border: none;
+      }
+      .wrapper-img {
+        margin: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="btn-wrapper"><button>Show next player</button></div> -->
+    <div id="wrapper">
+      <div id="container">
+        <div class="player-info">
+          <div><img src="" alt="" /></div>
+          <div id="name"></div>
+          <div id="matches"></div>
+          <div id="fifties"></div>
+          <div id="hundreds"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let eleContainer = document.getElementById("container");
+      let eleImage = document.querySelector("img");
+      let eleName = document.getElementById("name");
+      let eleMatches = document.getElementById("matches");
+      let eleFifities = document.getElementById("fifties");
+      let eleHundreds = document.getElementById("hundreds");
+      let index = -1;
+      let playerList = [
+        {
+          id: 1,
+          name: "Sunil Gawaskar",
+          matches: 135,
+          hundreds: 34,
+          fifties: 45,
+          image: "SunilGawaskar.jpg",
+        },
+
+        {
+          id: 2,
+          name: "Kapil Dev",
+          matches: 131,
+          hundreds: 8,
+          fifties: 27,
+          image: "KapilDev.jpg",
+        },
+        {
+          id: 3,
+          name: "Mohinder Amarnath",
+          matches: 69,
+          hundreds: 11,
+          fifties: 24,
+          image: "MohinderAmarnath.jpg",
+        },
+        {
+          id: 4,
+          name: "Azaharuddin",
+          matches: 99,
+          hundreds: 22,
+          fifties: 21,
+          image: "Azaharuddin.jpg",
+        },
+        {
+          id: 5,
+          name: "Sachin Tendulkar",
+          matches: 200,
+          hundreds: 51,
+          fifties: 68,
+          image: "SachinTendulkar.jpg",
+        },
+        {
+          id: 6,
+          name: "Saurav Ganguly",
+          matches: 113,
+          hundreds: 16,
+          fifties: 35,
+          image: "SauravGanguly.jpg",
+        },
+        {
+          id: 7,
+          name: "Rahul Dravid",
+          matches: 164,
+          hundreds: 36,
+          fifties: 63,
+
+          image: "RahulDravid.jpg",
+        },
+        {
+          id: 8,
+          name: "Mahendra Dhoni",
+          matches: 90,
+          hundreds: 6,
+          fifties: 33,
+          image: "MahendraDhoni.jpg",
+        },
+        {
+          id: 9,
+          name: "Virat Kohli",
+          matches: 108,
+          hundreds: 28,
+          fifties: 28,
+          image: "ViratKohli.jpg",
+        },
+      ];
+
+      let params=new URLSearchParams(window.location.search);
+      console.log(params);
+      let value= params.get("name");
+      console.log(value);
+      let filteredPlayerList=playerList.filter((e,index)=>e.name.toLowerCase().startsWith(value.toLowerCase()));
+
+      if(filteredPlayerList.length!=0){
+
+        index = (index + 1) % filteredPlayerList.length;
+        eleImage.src = "/img/" + filteredPlayerList[0].image;
+        eleName.innerHTML = filteredPlayerList[0].name;
+        eleMatches.innerHTML = "Matches: " + filteredPlayerList[0].matches;
+        eleFifities.innerHTML = "Fifties: " + filteredPlayerList[0].fifties;
+        eleHundreds.innerHTML = "Hundreds: " + filteredPlayerList[0].hundreds;
+      }else{
+        eleName.innerHTML=`No such Player.`
+      }
+
+      
+
+      //USE THIS CODE
+    </script>
+  </body>
+</html>
