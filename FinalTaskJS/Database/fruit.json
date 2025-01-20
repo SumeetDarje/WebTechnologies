@@ -7,6 +7,7 @@
       "discount": "10",
       "type": "Organic",
       "stock": "no",
+      "qty":0,
       "image": "grapes.jpg",
       "id": "1"
     },
@@ -18,6 +19,7 @@
       "type": "Organic",
       "stock": "no",
       "image": "mango.jpg",
+      "qty":0,
       "id": "2"
     },
     {
@@ -28,6 +30,7 @@
       "type": "Non-Organic",
       "stock": "no",
       "image": "banana.jpg",
+      "qty":0,
       "id": "3"
     },
     {
@@ -38,6 +41,7 @@
       "type": "Non-Organic",
       "stock": "no",
       "image": "apple.jpg",
+      "qty":0,
       "id": "4"
     },
     {
@@ -92,6 +96,7 @@
       "type": "Organic",
       "stock": "no",
       "image": "chikoo.jpg",
+      "qty":0,
       "id": "9"
     },
     {
@@ -194,34 +199,40 @@
       "type": "Non-Organic"
     },
     {
-      "id": "19",
       "name": "Dragon",
-      "image": "dragon.jpg",
       "unit": "piece",
       "mrp": "70",
       "discount": "0",
       "type": "Non-Organic",
-      "stock": "yes"
-    },
-    {
-      "name": "Add1",
-      "unit": "kg",
-      "mrp": "1000",
-      "discount": "50",
-      "type": "Non-Organic",
-      "stock": "no",
-      "image": "Default.jpg",
-      "id": "a9f4"
-    },
-    {
-      "name": "Add2",
-      "unit": "doz",
-      "mrp": "140",
-      "discount": "0",
-      "type": "Organic",
       "stock": "yes",
-      "image": "Default.jpg",
-      "id": "2e28"
+      "image": "dragon.jpg",
+      "qty":0,
+      "id": "19"
+    }
+  ],
+  "user": [
+    {
+      "id": "feda",
+      "name": "Sumeet",
+      "email": "sumeetdarje@gmail.com",
+      "password": "12",
+      "confirm-password": "12",
+      "role": "admin"
+    },
+    {
+      "id": "f5c3",
+      "name": "varad",
+      "email": "varad@gmail.com",
+      "password": "123",
+      "confirmPassword": "123"
+    },
+    {
+      "id": "feeb",
+      "name": "ss",
+      "email": "aa@fgg",
+      "password": "11",
+      "confirmPassword": "11",
+      "role": "user"
     }
   ]
 }

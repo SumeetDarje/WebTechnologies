@@ -35,9 +35,9 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
     <style>
-      /* .myborder {
-        border: 2px solid black;
-      } */
+      /*.myborder {
+         border: 2px solid black; 
+      }*/
     </style>
   </head>
 
@@ -95,23 +95,49 @@
             <div class="navbar-nav mx-auto myborder">
               <a href="index.html" class="nav-item nav-link">Home</a>
               <a href="shop-detail.html" class="nav-item nav-link">About US</a>
-              <a href="contact.html" class="nav-item nav-link">Contact</a>
+              <a
+                class="nav-item nav-link welcome-user text-center text-success"
+              >
+              </a>
+              <a
+                href="#"
+                class="nav-item nav-link btn-login"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                >Login</a
+              >
+              <a
+                href="#"
+                class="nav-item nav-link btn-signup"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                >Sign-up</a
+              >
+              <a href="#" class="nav-item nav-link btn-logout" type="button"
+                >Logout</a
+              >
+              <a href="#" class="position-relative me-4 my-auto shopping-cart">
+                <i class="fa fa-shopping-bag fa-2x"></i>
+                <span
+                  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1 items-qty"
+                  style="top: -5px; left: 15px; height: 20px; min-width: 20px"
+                ></span>
+              </a>
             </div>
             <div class="d-flex m-3 me-0">
               <a href="#" class="position-relative me-4 my-auto"> </a>
             </div>
           </div>
         </nav>
+        <div class="page-message text-center text-danger"></div>
       </div>
     </div>
     <!-- Navbar End -->
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5"></div>
     <!-- Single Page Header End -->
-    
-    <!-- Add More Item Button -->
-    <div class="mt-4 myborder text-center addButton"></div>
-    <!-- End -->
 
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite">
@@ -154,11 +180,11 @@
                 </div>
               </div>
             </div>
+            <div class="text-center my-5 container-btn-add"></div>
             <div class="row g-4">
               <div class="col-lg-3">
                 <div class="row g-4">
                   <div class="col-lg-12"></div>
-
                   <div class="col-lg-12">
                     <div class="mb-3">
                       <h4>Filter</h4>
@@ -209,7 +235,8 @@
               </div>
               <div class="col-lg-9">
                 <div
-                  class="row g-4 justify-content-center container-products"></div>
+                  class="row g-4 justify-content-center container-products"
+                ></div>
               </div>
             </div>
           </div>
@@ -309,25 +336,52 @@
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <span class="text-light"
               ><a href="#"
-                ><i class="fas fa-copyright text-light me-2"></i>Laxmi Fruits</a
+                ><i class="fas fa-copyright text-light me-2"></i>Your Site
+                Name</a
               >, All right reserved.</span
             >
           </div>
           <div class="col-md-6 my-auto text-center text-md-end text-white">
-            <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-            <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-            <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+            <!--/* This template is free as long as you keep the below author’s credit link/attribution link/backlink. */-->
+            <!--/* If you'd like to use the template without the below author’s credit link/attribution link/backlink, */-->
+            <!--/* you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". */-->
             Designed By
-            <a class="border-bottom" href="">Sumeet</a>
+            <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+            Distributed By
+            <a class="border-bottom" href="https://themewagon.com"
+              >ThemeWagon</a
+            >
           </div>
         </div>
       </div>
     </div>
     <!-- Copyright End -->
-
-    <div id="form-modal"></div>
-
-    <div id="formAdd"></div>
+    <div id="form-modal">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Signup form
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Back to Top -->
     <a
