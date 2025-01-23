@@ -1,0 +1,13 @@
+.myborder{
+    border: solid 3px rgb(218, 199, 32);
+    border-radius: 10px;   
+    position: relative;
+}
+
+.discount{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    background-color: orange;
+    padding: 3px;
+}
