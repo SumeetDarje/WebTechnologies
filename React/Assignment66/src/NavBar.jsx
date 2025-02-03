@@ -27,6 +27,10 @@ function NavBar(props) {
     props.onLoginSuccess();
   }
 
+  function handleAddProductBtn(){
+    props.onAddProductBtnClick();
+  }
+
 
   return (
     <>
@@ -38,12 +42,12 @@ function NavBar(props) {
           <div className="col-7 text-center ">
           {/* <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
           <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button> */}
-            { userView =="products" || userView=="signupPage" || userView=="loginPage" ? (
+            { userView =="products" || userView=="signupPage" || userView=="loginPage" || userView=="loader"  ? (
               <>
             <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
             <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button>
             </>
-          ): userView =="admin" ? (
+          ): userView =="admin" || userView == "form" ? (
             <>
                <span className="text-white fw-bold me-3">Welcome, {userName} The Admin</span>
                 <button className="btn bg-white" onClick={onlogout}>
@@ -76,6 +80,12 @@ function NavBar(props) {
             onChange={handleInputChange}
           />
         </div>
+
+            { userView=="admin" && (
+              <div className="text-center mb-2">
+                <button className="btn bg-white" onClick={handleAddProductBtn}>Add Product</button>
+              </div>)}
+
       <div className="text-white text-center ">{message}</div>
       </div>
     </>

@@ -199,6 +199,7 @@ function Assi66() {
   //   },
   // ];
 
+  // let p=[...productList]
 
   let [productList, setProductList] = useState([]);
   let [filteredProductList, setFilteredProductList] = useState([]);
@@ -211,9 +212,9 @@ function Assi66() {
   let [selectedProduct, setSelectedProduct] = useState("");
   let [loadFlag, setLoadFlag] = useState(false);
 
-  // let [userView, setUserView] = useState("admin");
+  let [userView, setUserView] = useState("admin");
   // let [userView, setUserView] = useState("products");
-  let [userView, setUserView] = useState("loader");
+  // let [userView, setUserView] = useState("loader");
 
   let [userName, setUserName] = useState("");
 
@@ -288,13 +289,13 @@ function Assi66() {
   async function getData() {
     console.log("got the data");
     setLoadFlag(true);
-    setTimeout(() => {
-      setLoadFlag(false);
-      setUserView("products");
-    }, 1500);
+    // setTimeout(() => {
+    //   setLoadFlag(false);
+    //   setUserView("products");
+    // }, 1500);
     let response = await axios("http://localhost:3000/fruits");
     let fList = await response.data;
-    // setLoadFlag(false);
+    setLoadFlag(false);
     console.log("Loaded " + fList.length);
     setProductList(fList);
     setFilteredProductList(fList);
@@ -352,6 +353,13 @@ function Assi66() {
     setUserView("form");
   }
 
+  function handleAddProductBtn(){
+    console.log("ADD new Product ");
+    setAdminView("add");
+    setUserView("form");
+    
+  }
+
   function handleFormSubmit(updatedProduct) {
     if (adminView == "edit") {
       let updatedList = productList.map((p) =>
@@ -362,6 +370,11 @@ function Assi66() {
       setFilteredProductList(updatedList);
       setProductList(updatedList);
     }
+    else if(adminView=="add"){
+      console.log("Add kara ");
+    
+      
+    }
     setUserView("admin");
   }
 
@@ -369,6 +382,7 @@ function Assi66() {
     console.log("Product List Click ");
     setUserView("admin");
   }
+
 
   function handleDeleteButton(card) {
     // console.log("Delete "+card.id);
@@ -398,6 +412,8 @@ function Assi66() {
         userView={userView}
         onlogout={handleLogout}
         userName={userName}
+        onAddProductBtnClick={handleAddProductBtn}
+
       />
       <div className="container containerMargin">
         <div className="text-center">
@@ -422,6 +438,7 @@ function Assi66() {
         )}
 
         {userView == "admin" && (
+        <div className="container containerMargin1">
           <div className=" row mt-5 ">
             {filteredProductList.map((e, i) => (
               <AdminPage
@@ -433,6 +450,7 @@ function Assi66() {
               />
             ))}
           </div>
+        </div>
         )}
 
         {userView == "form" && (

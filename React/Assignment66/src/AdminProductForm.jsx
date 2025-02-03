@@ -8,6 +8,10 @@ function AdminProductFormSample(props) {
     name: "",
     mrp: "",
     discount: "",
+    unit: "",
+    inStock: false,
+    qty: 0,
+    type: "",
   };
   let [product, setProduct] = useState([]);
   let [flagLoader, setFlagLoader] = useState(false);
@@ -28,22 +32,22 @@ function AdminProductFormSample(props) {
       setProduct(p);
     }
   }, []);
-  function handleProductListClick() { 
+  function handleProductListClick() {
     props.onProductListClick();
   }
   function handleTextChange(event) {
     let name = event.target.name;
     setProduct({ ...product, [name]: event.target.value });
-    
+
     let message = fieldValidate(event, errorProduct);
     let errProduct = { ...errorProduct };
     errProduct[name].message = message;
     setErrorProduct(errProduct);
-    checkAllErrors(errProduct)
+    checkAllErrors(errProduct);
   }
   function handleBlur(event) {
     let name = event.target.name;
-    let message = fieldValidate(event, errorClientSheet);
+    let message = fieldValidate(event, errorProduct);
     let errProduct = { ...errorProduct };
     errProduct[`${name}`].message = message;
     setErrorProduct(errProduct);
@@ -164,6 +168,77 @@ function AdminProductFormSample(props) {
               <div className="offset-sm-4 offset-6 text-start text-danger">
                 {errorProduct.discount.message && errorProduct.discount.message}
               </div>
+
+            {/* add new product */}
+
+              {adminView == "add" && (
+              <div className=" row">
+                <div className="offset-sm-4 offset-6 text-start text-danger">
+                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+                
+              </div>
+              <div className="col-sm-4 col-6  my-2 text-end">Unit</div>
+              <div className="col-6 mx-2 my-2">
+                <input
+                  type="text"
+                  placeholder="kg,doz,pieces,(etc)"
+                  name="unit"
+                  id=""
+                  value={product.unit}
+                  onChange={handleTextChange}
+                  onBlur={handleBlur}
+                  onFocus={handleFocus}
+                  required
+                />
+              </div>
+                
+              <div className="offset-sm-4 offset-6 text-start text-danger">
+                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+              </div>
+              <div className="col-sm-4 col-6  my-2 text-end">Type</div>
+              <div className="col-6 mx-2 my-2">
+                <select name="type" 
+                required
+                >
+                  <option value="">Select Type</option>
+                  <option value="Organic">Organic</option>
+                  <option value="Non-organic">Non-organic</option>
+                </select>
+
+              </div>
+                
+              <div className="offset-sm-4 offset-6 text-start text-danger">
+                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+              </div>
+              <div className="col-sm-4 col-6  my-2 text-end">Stock</div>
+              <div className="col-6 mx-2 my-2">
+
+                <label >
+                  <input
+                    type="radio"
+                    value="true"
+                    name="inStock"
+                    
+                    // checked={newProduct.inStock}
+                   
+                  />{" "}
+                  In Stock
+                  {" "}
+                  <input
+                    type="radio"
+                    value="false"
+                    name="inStock"
+                    // checked={newProduct.inStock}
+                  
+                  />{" "}
+                  Out of Stock
+                </label>
+                </div>
+
+              </div>
+            )}
+
+             
               <div className="col-sm-4 col-6  my-2 text-end"></div>
               <div className="col-6 my-2">
                 <input
