@@ -5,8 +5,8 @@
       "name": "Mango",
       "image": "mango.jpg",
       "unit": "doz",
-      "mrp": 500,
-      "discount": 8,
+      "mrp": "550",
+      "discount": "10",
       "inStock": true,
       "qty": 0,
       "type": "Organic"
@@ -16,8 +16,8 @@
       "name": "Banana",
       "image": "banana.jpg",
       "unit": "doz",
-      "mrp": 60,
-      "discount": 0,
+      "mrp": "60",
+      "discount": "0",
       "inStock": true,
       "qty": 0,
       "type": "Non-Organic"
@@ -28,7 +28,7 @@
       "image": "apple.jpg",
       "unit": "kg",
       "mrp": 180,
-      "discount": 7,
+      "discount": "7",
       "inStock": true,
       "qty": 0,
       "type": "Non-Organic"
@@ -39,7 +39,7 @@
       "image": "strawberry.jpg",
       "unit": "kg",
       "mrp": 200,
-      "discount": 20,
+      "discount": "20",
       "inStock": true,
       "qty": 0,
       "type": "Non-Organic"
@@ -206,24 +206,10 @@
       "role": "user"
     },
     {
-      "id": "5748",
-      "name": "Swarup",
-      "emailid": "s@gmail.com",
-      "password": "12345",
-      "role": "user"
-    },
-    {
       "id": "f43e",
       "name": "Kshitij",
       "emailid": "kshitij@gmail.com",
       "password": "123456",
-      "role": "user"
-    },
-    {
-      "id": "a9bd",
-      "name": "new",
-      "emailid": "new@g.c",
-      "password": "12345",
       "role": "user"
     }
   ]

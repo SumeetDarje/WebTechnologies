@@ -6,10 +6,11 @@ import fieldValidate from "./FiledValidate";
 function AdminProductFormSample(props) {
   let emptyProduct = {
     name: "",
+    // image: "/images/Default.jpg",
+    unit: "",
     mrp: "",
     discount: "",
-    unit: "",
-    inStock: false,
+    inStock: true,
     qty: 0,
     type: "",
   };
@@ -84,17 +85,18 @@ function AdminProductFormSample(props) {
     setFlagLoader(false);
   }
   async function addToBackendProduct(product) {
-    setFlagLoader(true);
+    // setFlagLoader(true);
     let response = await axios.post("http://localhost:3000/fruits", product);
     let data = await response.data;
     console.log("Added");
-    console.log(data);
+    // console.log(data);
     props.onProductAddFormSubmit(data); // this has id
     setFlagLoader(false);
   }
   if (flagLoader) {
     return <BeatLoader size={24} color={"red"} />;
   }
+
 
   return (
     <>
@@ -119,6 +121,7 @@ function AdminProductFormSample(props) {
               handleProductAddEditFormSubmit(event);
             }}
           >
+          
             <div className="row">
               <div className="col-sm-4 col-6 my-2 text-end">Name</div>
               <div className="col-6 my-2">
@@ -169,76 +172,84 @@ function AdminProductFormSample(props) {
                 {errorProduct.discount.message && errorProduct.discount.message}
               </div>
 
-            {/* add new product */}
+              {/* add new product */}
 
               {adminView == "add" && (
-              <div className=" row">
-                <div className="offset-sm-4 offset-6 text-start text-danger">
-                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
-                
-              </div>
-              <div className="col-sm-4 col-6  my-2 text-end">Unit</div>
-              <div className="col-6 mx-2 my-2">
-                <input
-                  type="text"
-                  placeholder="kg,doz,pieces,(etc)"
-                  name="unit"
-                  id=""
-                  value={product.unit}
-                  onChange={handleTextChange}
-                  onBlur={handleBlur}
-                  onFocus={handleFocus}
-                  required
-                />
-              </div>
-                
-              <div className="offset-sm-4 offset-6 text-start text-danger">
-                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
-              </div>
-              <div className="col-sm-4 col-6  my-2 text-end">Type</div>
-              <div className="col-6 mx-2 my-2">
-                <select name="type" 
-                required
-                >
-                  <option value="">Select Type</option>
-                  <option value="Organic">Organic</option>
-                  <option value="Non-organic">Non-organic</option>
-                </select>
+                <div className=" row">
+                  <div className="offset-sm-4 offset-6 text-start text-danger">
+                    {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+                  </div>
+                  <div className="col-sm-4 col-6  my-2 text-end">Unit</div>
+                  <div className="col-6 mx-2 my-2">
+                    <input
+                      type="text"
+                      placeholder="kg,doz,pieces,(etc)"
+                      name="unit"
+                      id=""
+                      value={product.unit}
+                      onChange={handleTextChange}
+                      onBlur={handleBlur}
+                      onFocus={handleFocus}
+                      required
+                    />
+                  </div>
 
-              </div>
-                
-              <div className="offset-sm-4 offset-6 text-start text-danger">
-                {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
-              </div>
-              <div className="col-sm-4 col-6  my-2 text-end">Stock</div>
-              <div className="col-6 mx-2 my-2">
+                  <div className="offset-sm-4 offset-6 text-start text-danger">
+                    {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+                  </div>
+                  <div className="col-sm-4 col-6  my-2 text-end">Type</div>
+                  <div className="col-6 mx-2 my-2">
+                    <select
+                      name="type"
+                      required
+                      value={product.type}
+                      onChange={(e) =>
+                        setProduct({ ...product, type: e.target.value })
+                      }
+                    >
+                      <option value="">Select Type</option>
+                      <option value="Organic">Organic</option>
+                      <option value="Non-organic">Non-organic</option>
+                    </select>
+                  </div>
 
-                <label >
-                  <input
-                    type="radio"
-                    value="true"
-                    name="inStock"
-                    
-                    // checked={newProduct.inStock}
-                   
-                  />{" "}
-                  In Stock
-                  {" "}
-                  <input
-                    type="radio"
-                    value="false"
-                    name="inStock"
-                    // checked={newProduct.inStock}
-                  
-                  />{" "}
-                  Out of Stock
-                </label>
+                  <div className="offset-sm-4 offset-6 text-start text-danger">
+                    {/* {errorProduct.mrp.message && errorProduct.mrp.message} */}
+                  </div>
+                  <div className="col-sm-4 col-6  my-2 text-end">Stock</div>
+                  <div className="col-6 mx-2 my-2">
+                    <label>
+                      <input
+                        type="radio"
+                        value="true"
+                        name="inStock"
+                        checked={product.inStock == true}
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            inStock: e.target.value == "true",
+                          })
+                        }
+                      />{" "}
+                      In Stock{" "}
+                      <input
+                        type="radio"
+                        value="false"
+                        name="inStock"
+                        checked={product.inStock == false}
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            inStock: e.target.value == "true",
+                          })
+                        }
+                      />{" "}
+                      Out of Stock
+                    </label>
+                  </div>
                 </div>
+              )}
 
-              </div>
-            )}
-
-             
               <div className="col-sm-4 col-6  my-2 text-end"></div>
               <div className="col-6 my-2">
                 <input

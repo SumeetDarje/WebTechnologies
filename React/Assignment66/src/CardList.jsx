@@ -6,7 +6,7 @@ function CardList(props) {
   function handleAddToCartBtn() {
     // console.log(card.inStock);
 
-    props.onClickBtn(index,"add");
+    props.onClickBtn(index,"addToCart");
   }
 
   function handleBtnClick(action){
@@ -31,8 +31,8 @@ function CardList(props) {
         <div className="mt-2">Rs. 
           <span className="text-decoration-line-through">{card.discount==0 ? "": 
           // (card.mrp-(card.mrp*card.discount)/100)} 
-        (card.mrp)}
-          </span>  
+        (card.mrp)} 
+          </span>  {" "}
           {(card.mrp-(card.mrp*card.discount)/100)}
         </div>
 

@@ -9,197 +9,6 @@ import { BeatLoader } from "react-spinners";
 import AdminProductFormSample from "./AdminProductForm";
 
 function Assi66() {
-  // let pList = [
-  //   {
-  //     name: "Grapes",
-  //     image: "grapes.jpg",
-  //     unit: "kg",
-  //     mrp: 120,
-  //     discount: 10,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Mango",
-  //     image: "mango.jpg",
-  //     unit: "doz",
-  //     mrp: 500,
-  //     discount: 8,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Banana",
-  //     image: "banana.jpg",
-  //     unit: "doz",
-  //     mrp: 60,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Apple",
-  //     image: "apple.jpg",
-  //     unit: "kg",
-  //     mrp: 180,
-  //     discount: 7,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Anjeer",
-  //     image: "anjeer.jpg",
-  //     unit: "kg",
-  //     mrp: 100,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Strawberry",
-  //     image: "strawberry.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 20,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Papaya",
-  //     image: "papaya.jpg",
-  //     unit: "kg",
-  //     mrp: 50,
-  //     discount: 15,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Cherry",
-  //     image: "cherry.jpg",
-  //     unit: "kg",
-  //     mrp: 300,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Orange",
-  //     image: "orange.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 10,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Pear",
-  //     image: "pear.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 7,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Pineapple",
-  //     image: "pineapple.jpg",
-  //     unit: "piece",
-  //     mrp: 100,
-  //     discount: 50,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Pomegranete",
-  //     image: "pomegranete.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Sitaphal",
-  //     image: "sitaphal.jpg",
-  //     unit: "kg",
-  //     mrp: 100,
-  //     discount: 10,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Watermelon",
-  //     image: "watermelon.jpg",
-  //     unit: "piece",
-  //     mrp: 80,
-  //     discount: 50,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Sweetlime",
-  //     image: "sweetlime.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Peach",
-  //     image: "peach.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 10,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  //   {
-  //     name: "Dragon",
-  //     image: "dragon.jpg",
-  //     unit: "piece",
-  //     mrp: 60,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //     total: 0,
-  //   },
-  // ];
-
-  // let p=[...productList]
 
   let [productList, setProductList] = useState([]);
   let [filteredProductList, setFilteredProductList] = useState([]);
@@ -212,9 +21,9 @@ function Assi66() {
   let [selectedProduct, setSelectedProduct] = useState("");
   let [loadFlag, setLoadFlag] = useState(false);
 
-  let [userView, setUserView] = useState("admin");
+  // let [userView, setUserView] = useState("admin");
   // let [userView, setUserView] = useState("products");
-  // let [userView, setUserView] = useState("loader");
+  let [userView, setUserView] = useState("loader");
 
   let [userName, setUserName] = useState("");
 
@@ -289,13 +98,13 @@ function Assi66() {
   async function getData() {
     console.log("got the data");
     setLoadFlag(true);
-    // setTimeout(() => {
-    //   setLoadFlag(false);
-    //   setUserView("products");
-    // }, 1500);
+    setTimeout(() => {
+      setLoadFlag(false);
+      setUserView("products");
+    }, 1500);
     let response = await axios("http://localhost:3000/fruits");
     let fList = await response.data;
-    setLoadFlag(false);
+    // setLoadFlag(false);
     console.log("Loaded " + fList.length);
     setProductList(fList);
     setFilteredProductList(fList);
@@ -360,7 +169,7 @@ function Assi66() {
     
   }
 
-  function handleFormSubmit(updatedProduct) {
+  async function handleFormSubmit(updatedProduct) {
     if (adminView == "edit") {
       let updatedList = productList.map((p) =>
         p.id == updatedProduct.id ? updatedProduct : p
@@ -372,7 +181,8 @@ function Assi66() {
     }
     else if(adminView=="add"){
       console.log("Add kara ");
-    
+      setProductList([...productList, updatedProduct]);
+      setFilteredProductList([...filteredProductList, updatedProduct]);
       
     }
     setUserView("admin");
@@ -460,6 +270,7 @@ function Assi66() {
             onProductEditFormSubmit={handleFormSubmit}
             onProductAddFormSubmit={handleFormSubmit}
             onProductListClick={handleProductListClick}
+            // addToBackendProduct={addToBackendProduct} 
           />
         )}
 

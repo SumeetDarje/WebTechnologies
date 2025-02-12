@@ -9,6 +9,8 @@ function AdminPage(props){
     function handleEditButton(){
       // console.log("Edit");
       props.onEditBtn(card);
+      // console.log(card);
+      
     }
       
   async function handleDeleteButton(){
@@ -35,9 +37,8 @@ function AdminPage(props){
         
         <div className="mt-2">Rs. 
           <span className="text-decoration-line-through">{card.discount==0 ? "": 
-        (card.mrp)
-          } 
-          </span>  
+        (card.mrp)} 
+          </span>  {" "}
           {(card.mrp-(card.mrp*card.discount)/100)}
         </div>
         
