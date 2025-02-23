@@ -8,8 +8,7 @@ function CartBtn(props) {
 
 return (
     <div className="text-center">
-      Cart is Empty. <a className="" onClick={handleCartListClick}>Start</a> Shopping
-      
+      Cart is Empty. <a role="button" className="text-primary" onClick={handleCartListClick}>Start</a> Shopping
     </div>
 )
 }
