@@ -31,6 +31,10 @@ function NavBar(props) {
     props.onAddProductBtnClick();
   }
 
+  function handleCartBtn(){
+    props.onCartBtnClick();
+  }
+
 
   return (
     <>
@@ -42,7 +46,7 @@ function NavBar(props) {
           <div className="col-7 text-center ">
           {/* <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
           <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button> */}
-            { userView =="products" || userView=="signupPage" || userView=="loginPage" || userView=="loader"  ? (
+            { userView =="products" || userView=="signupPage" || userView=="loginPage" || userView=="loader" || userView == "cart"  ? (
               <>
             <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
             <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button>
@@ -64,7 +68,8 @@ function NavBar(props) {
             ):null}  
           </div>
           <div className=" mt-2 col-1  text-center  ">
-            <button className="p-3 button1 cartCntRelative ">
+            <button className="p-3 button1 cartCntRelative " onClick={handleCartBtn}>
+            {/* <button className="p-3 button1 cartCntRelative "> */}
               <i className="bi bi-cart"></i>{" "}
             <span className="cartCount ">{cartCount}</span>
             </button>

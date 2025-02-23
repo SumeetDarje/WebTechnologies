@@ -7,6 +7,7 @@ import AdminPage from "./AdminPage";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import AdminProductFormSample from "./AdminProductForm";
+import CartBtn from "./CartBtn";
 
 function Assi66() {
 
@@ -210,6 +211,14 @@ function Assi66() {
     setTimeout(() => setMessage(""), 4000);
   }
 
+  function handleCartBtn(){
+    setUserView("cart");
+  }
+
+  function handleCartListClick(){
+    setUserView("products"); 
+  }
+
   return (
     <>
       <NavBar
@@ -223,6 +232,7 @@ function Assi66() {
         onlogout={handleLogout}
         userName={userName}
         onAddProductBtnClick={handleAddProductBtn}
+        onCartBtnClick={handleCartBtn}
 
       />
       <div className="container containerMargin">
@@ -284,7 +294,7 @@ function Assi66() {
                 key={i}
                 index={i}
                 userView={userView}
-              />
+              />             
             ))}
           </div>
         )}
@@ -299,8 +309,18 @@ function Assi66() {
                 key={i}
                 index={i}
                 userView={userView}
+                onCartListClick={handleCartListClick}
               />
             ))}
+          </div>
+        )}
+
+        {userView == "cart" && (
+          <div className="row justify-content-between align-items-center">
+            <CartBtn
+               onCartListClick={handleCartListClick}
+               
+            />
           </div>
         )}
       </div>
