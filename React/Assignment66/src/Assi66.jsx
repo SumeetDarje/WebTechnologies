@@ -7,7 +7,7 @@ import AdminPage from "./AdminPage";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import AdminProductFormSample from "./AdminProductForm";
-import CartBtn from "./CartBtn";
+import CartPage from "./CartPage";
 
 function Assi66() {
 
@@ -311,7 +311,7 @@ function Assi66() {
           />
         )}
 
-        {userView == "products" && (
+        {(userView == "products" || userView == "user" ) && (
           <div className=" row mt-5 ">
             {filteredProductList.map((e, i) => (
               <CardList
@@ -326,31 +326,15 @@ function Assi66() {
           </div>
         )}
 
-        {userView == "user" && (
-          <div className=" row mt-5 ">
-            {filteredProductList.map((e, i) => (
-              <CardList
-                onClickBtn={handleAddToCartBtn}
-                totalPrice={e.mrp * e.qty}
-                card={e}
-                key={i}
-                index={i}
-                userView={userView}
-                // onCartListClick={handleCartListClick}
-              />
-            ))}
-          </div>
-        )}
-
         {userView == "cart"  && (
           // <div className="row ">
           <div className="row justify-content-between align-items-center">
-            <CartBtn
+            <CartPage
                onCartListClick={handleCartListClick}
                userName={userName}
                cartCount={cartCount}
                onCartBack={handleCartBack}
-               
+
             />
           </div>
         )}
