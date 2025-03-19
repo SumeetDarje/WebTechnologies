@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 
 function NavBar(props) {
 
@@ -12,6 +12,19 @@ function NavBar(props) {
   let {userName}=props;
   
   let [searchInput, setSearchInput] = useState("");
+  let [storedUserName, setStoredUserName] = useState("");
+  let [storedUserView, setStoredUserView] = useState("");
+
+  useEffect(() => {
+    let storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      let userData = JSON.parse(storedUser);
+      if(userData){
+      setStoredUserName(userData.name);
+      setStoredUserView(userData.role == "admin" ? "admin" : "user");
+    }
+  }
+  }, []);
 
   function handleInputChange(e) {
     let value = e.target.value;
@@ -46,26 +59,27 @@ function NavBar(props) {
           <div className="col-7 text-center ">
           {/* <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
           <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button> */}
-            { userView =="products" || userView=="signupPage" || userView=="loginPage" || userView=="loader" || userView == "cart"  ? (
+            { (userView =="products" || userView=="signupPage" || userView=="loginPage" || userView=="loader" || userView == "cart") && userName=="" ? (
               <>
             <button className="btn bg-white" onClick={handleLoginBtn}>Login</button>{" "}
             <button className="btn bg-white" onClick={handleSignupBtn}>Sign Up</button>
             </>
-          ): userView =="admin" || userView == "form" ? (
+          ): userView =="admin" || storedUserView=="admin" || userView == "form" ? (
             <>
-               <span className="text-white fw-bold me-3">Welcome, {userName} The Admin</span>
+               <span className="text-white fw-bold me-3">Welcome, {storedUserName || userName} The Admin</span>
                 <button className="btn bg-white" onClick={onlogout}>
                   Logout
                 </button>
             </>
-          ): userView =="user" ? (
+          ): (userView =="user" || storedUserView=="user" || userView=="cart") && userName!="" ? (
             <>
-               <span className="text-white fw-bold me-3">Welcome, {userName}</span>
+               <span className="text-white fw-bold me-3">Welcome, {storedUserName || userName}</span>
                 <button className="btn bg-white" onClick={onlogout}>
                   Logout
                 </button>
             </>
             ):null}  
+    
           </div>
           <div className=" mt-2 col-1  text-center  ">
             <button className="p-3 button1 cartCntRelative " onClick={handleCartBtn}>
@@ -86,7 +100,7 @@ function NavBar(props) {
           />
         </div>
 
-            { userView=="admin" && (
+            { (userView=="admin" || storedUserView=="admin" ) && userName!="" && (
               <div className="text-center mb-2">
                 <button className="btn bg-white" onClick={handleAddProductBtn}>Add Product</button>
               </div>)}
