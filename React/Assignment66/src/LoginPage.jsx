@@ -1,9 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 
 function LoginPage(props) {
   let { userView } = props;
   let [loginStatus, setLoginStatus] = useState("no");
+  let {userName,cartCount}=props;
+
+  useEffect(()=>{
+    let storedUser=localStorage.getItem("user");
+    if(storedUser){
+      let userData= JSON.parse(storedUser);
+      if (userData.role=="admin"){
+        setLoginStatus("admin");
+        props.onAdminLogin(userData);
+      }else{
+        setLoginStatus("user");
+        props.onUserLogin(userData);
+      }
+    }
+  },[]);
 
   function handleLoginFormSubmit(event) {
     event.preventDefault();
@@ -24,18 +39,21 @@ function LoginPage(props) {
     );
 
     if (filteredData.length == 1) {
+      let loggedInUser=filteredData[0];
+      localStorage.setItem("user",JSON.stringify(loggedInUser));
+      // localStorage.setItem("user", JSON.stringify({ name: loggedInUser.name, role: loggedInUser.role }));
       setLoginStatus("success");
       props.onLoginSubmit("products");
       // props.onLoginSubmit(filteredData[0]);
-      if (filteredData[0].role == "admin") {
+      if (loggedInUser.role == "admin") {
         setLoginStatus("admin");
         console.log("Admin Login");
-        props.onAdminLogin(filteredData[0]);
+        props.onAdminLogin(loggedInUser);
       }
       else{
         setLoginStatus("user");
         console.log("User Login");
-        props.onUserLogin(filteredData[0]);
+        props.onUserLogin(loggedInUser);
 
       }
     } else {
@@ -54,6 +72,9 @@ function LoginPage(props) {
         <i className="bi bi-arrow-left"></i>
       </button>
     </div>
+    { userName=="" && cartCount>0 &&(
+      <div className="text-center text-danger">To process the order, you need to login.</div>
+    )}
       {loginStatus == "failed" && (
         <div className="text-center text-danger">
           Wrong Credentials. Try again.
