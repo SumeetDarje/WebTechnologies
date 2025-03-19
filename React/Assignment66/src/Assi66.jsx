@@ -28,6 +28,8 @@ function Assi66() {
 
   let [userName, setUserName] = useState("");
 
+  let [cartItem,setCartItem]= useState([]);
+
   // useEffect(()=>{
   //   let loader=setTimeout(()=>{
   //     setLoadFlag(true);
@@ -35,23 +37,25 @@ function Assi66() {
   //   return ()=> clearTimeout(loader);
   // },[])
 
+  useEffect(()=>{
+    let storedUser=localStorage.getItem("user");
+    if(storedUser){
+      let userData=JSON.parse(storedUser);
+      if(userData && userData.role=="admin"){
+        setUserView("admin");
+        setUserName(userData.name);
+      }else{
+        setUserView("user");
+        setUserName(userData.name);
+      }
+    }else{
+      setUserView("products");
+    }
+    getData();
+  },[]);
+
   function handleAddToCartBtn(selectedIndex, action) {
     console.log(selectedIndex, action);
-
-    // let prList = productList.map((e, index) => {
-    //   if (index == selectedIndex) {
-    //     if (action == "add"){
-    //       e.qty =1;
-    //     } else if(action == "+"){
-    //       e.qty++;
-    //     }
-    //     else if (action == "-" && e.qty > 0){
-    //       e.qty --;
-    //     }
-    //     console.log(e.qty);
-    //   }
-    //   return e;
-    // });
 
     let fprList = filteredProductList.map((e, index) => {
       if (index == selectedIndex) {
@@ -92,16 +96,16 @@ function Assi66() {
     setTotalPrice(total);
   }
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
   async function getData() {
     console.log("got the data");
     setLoadFlag(true);
     setTimeout(() => {
       setLoadFlag(false);
-      setUserView("products");
+      // setUserView("products");
     }, 1500);
     let response = await axios("http://localhost:3000/fruits");
     let fList = await response.data;
@@ -152,7 +156,11 @@ function Assi66() {
   }
 
   function handleLogout() {
+    localStorage.removeItem("user");
     setUserView("products");
+    setUserName("");  
+    // setCartCount(0);
+    setCartItem([]);
     console.log("logout");
   }
 
@@ -212,11 +220,28 @@ function Assi66() {
   }
 
   function handleCartBtn(){
-    setUserView("cart");
+    if(userName=="" && cartCount==0){
+      console.log("no login no item in cart");
+      setUserView("cart");
+    }else if(userName=="" && cartCount>0){
+      console.log("no login item selected in cart");
+      setUserView("loginPage")
+    }else if(userName!="" && (cartCount>0 || cartCount==0)){
+      console.log("login item selected in cart or not selected in cart");
+      setUserView("cart");
+    }
   }
 
   function handleCartListClick(){
-    setUserView("products"); 
+    if(userName!=""){
+      setUserView("user");
+    }else{
+      setUserView("products"); 
+    }
+  }
+
+  function handleCartBack(){
+    setUserView("user");
   }
 
   return (
@@ -254,6 +279,8 @@ function Assi66() {
             onAdminLogin={handleAdminLogin}
             onUserLogin={handleUserLogin}
             onBackBtn={handleBackBtn}
+            userName={userName}
+            cartCount={cartCount}
           />
         )}
 
@@ -309,16 +336,20 @@ function Assi66() {
                 key={i}
                 index={i}
                 userView={userView}
-                onCartListClick={handleCartListClick}
+                // onCartListClick={handleCartListClick}
               />
             ))}
           </div>
         )}
 
-        {userView == "cart" && (
+        {userView == "cart"  && (
+          // <div className="row ">
           <div className="row justify-content-between align-items-center">
             <CartBtn
                onCartListClick={handleCartListClick}
+               userName={userName}
+               cartCount={cartCount}
+               onCartBack={handleCartBack}
                
             />
           </div>
