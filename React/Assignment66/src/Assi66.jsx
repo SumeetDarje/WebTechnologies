@@ -10,7 +10,6 @@ import AdminProductFormSample from "./AdminProductForm";
 import CartPage from "./CartPage";
 
 function Assi66() {
-
   let [productList, setProductList] = useState([]);
   let [filteredProductList, setFilteredProductList] = useState([]);
 
@@ -28,7 +27,7 @@ function Assi66() {
 
   let [userName, setUserName] = useState("");
 
-  let [cartItem,setCartItem]= useState([]);
+  let [cartItem, setCartItem] = useState([]);
 
   // useEffect(()=>{
   //   let loader=setTimeout(()=>{
@@ -37,43 +36,40 @@ function Assi66() {
   //   return ()=> clearTimeout(loader);
   // },[])
 
-  useEffect(()=>{
-    let storedUser=localStorage.getItem("user");
-    if(storedUser){
-      let userData=JSON.parse(storedUser);
-      if(userData && userData.role=="admin"){
+  useEffect(() => {
+    let storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      let userData = JSON.parse(storedUser);
+      if (userData && userData.role == "admin") {
         setUserView("admin");
         setUserName(userData.name);
-      }else{
+      } else {
         setUserView("user");
         setUserName(userData.name);
       }
-    }else{
+    } else {
       setUserView("products");
     }
 
-    let savedCart=localStorage.getItem("cartData");
-    if(savedCart){
-      let parsedCart=JSON.parse(savedCart);
+    let savedCart = localStorage.getItem("cartData");
+    if (savedCart) {
+      let parsedCart = JSON.parse(savedCart);
       setCartItem(parsedCart);
       setCartCount(parsedCart.length);
       calTotalPrice(parsedCart);
     }
 
     let savedProduct = localStorage.getItem("productList");
-    if (savedProduct){
-      let parsedProduct=JSON.parse(savedProduct);
+    if (savedProduct) {
+      let parsedProduct = JSON.parse(savedProduct);
       setProductList(parsedProduct);
       setFilteredProductList(parsedProduct);
-    } 
-    else{
-
+    } else {
       getData();
     }
 
     // getData();
-
-  },[]);
+  }, []);
 
   function handleAddToCartBtn(selectedIndex, action) {
     console.log(selectedIndex, action);
@@ -93,7 +89,7 @@ function Assi66() {
           if (e.qty == 0) {
             // setCartCount(cartCount - 1);
             updatedCart = updatedCart.filter((item) => item.id !== e.id);
-            updateCartLocalStorage(updatedCart);
+            // updateCartLocalStorage(updatedCart);
           }
         }
         console.log(e.qty);
@@ -101,27 +97,31 @@ function Assi66() {
       return e;
     });
 
-    // setProductList(prList);
     setCartItem(updatedCart);
-    setCartCount(updatedCart.length)
+    setCartCount(updatedCart.length);
     setFilteredProductList(fprList);
+    setProductList(fprList);
     calTotalPrice(updatedCart);
     updateCartLocalStorage(updatedCart);
+
+    localStorage.setItem("productList", JSON.stringify(fprList));
   }
 
-  function handleCartProduct(selectedIndex, action){
-    let updatedCart=[...cartItem];
+  function handleCartProduct(selectedIndex, action) {
+    let updatedCart = [...cartItem];
     let item = updatedCart[selectedIndex];
 
-    if(item){
-      if(action == "+"){
+    if (item) {
+      if (action == "+") {
         item.qty++;
-      }else if(action == "-" && item.qty>0){
+      } else if (action == "-" && item.qty > 0) {
         item.qty--;
 
-        if(item.qty==0){
-          updatedCart=updatedCart.filter((e,index)=>index != selectedIndex);
-          updateCartLocalStorage(updatedCart);
+        if (item.qty == 0) {
+          updatedCart = updatedCart.filter(
+            (e, index) => index != selectedIndex
+          );
+          // updateCartLocalStorage(updatedCart);
         }
       }
     }
@@ -129,19 +129,26 @@ function Assi66() {
     setCartCount(updatedCart.length);
     calTotalPrice(updatedCart);
     updateCartLocalStorage(updatedCart);
+
+    // localStorage.setItem("productList",JSON.stringify(fprList));
+
+    let updatedProductList = productList.map((product) =>
+      product.id === item?.id ? { ...product, qty: item?.qty || 0 } : product
+    );
+
+    setProductList(updatedProductList);
+    setFilteredProductList(updatedProductList);
+
+    localStorage.setItem("productList", JSON.stringify(updatedProductList));
   }
 
-  function updateCartLocalStorage(updatedCart){
-    localStorage.setItem("cartData",JSON.stringify(updatedCart));
-    // localStorage.setItem("user",JSON.stringify())  
+  function updateCartLocalStorage(updatedCart) {
+    localStorage.setItem("cartData", JSON.stringify(updatedCart));
   }
 
   function calTotalPrice(cartData) {
     // const total = productList.reduce(
-    const total = cartData.reduce(
-    (sum, item) => sum + item.mrp * item.qty,
-      0
-    );
+    const total = cartData.reduce((sum, item) => sum + item.mrp * item.qty, 0);
     setTotalPrice(total);
   }
 
@@ -152,9 +159,8 @@ function Assi66() {
     setFilteredProductList(filterSearch);
   }
 
-
   // useEffect(() => {
-    
+
   // }, []);
 
   async function getData() {
@@ -168,7 +174,7 @@ function Assi66() {
     let fList = await response.data;
     // setLoadFlag(false);
     console.log("Loaded " + fList.length);
-    localStorage.setItem("productList",JSON.stringify(fList));
+    localStorage.setItem("productList", JSON.stringify(fList));
     setProductList(fList);
     setFilteredProductList(fList);
   }
@@ -215,12 +221,13 @@ function Assi66() {
 
   function handleLogout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("productList");
     setUserView("products");
-    setUserName("");  
+    setUserName("");
     setCartCount(0);
     setTotalPrice(0);
     setCartItem([]);
-    localStorage.removeItem("cartData");
     console.log("logout");
   }
 
@@ -231,29 +238,33 @@ function Assi66() {
     setUserView("form");
   }
 
-  function handleAddProductBtn(){
+  function handleAddProductBtn() {
     console.log("ADD new Product ");
     setAdminView("add");
     setUserView("form");
-    
   }
 
   async function handleFormSubmit(updatedProduct) {
+    let updatedList;
+
     if (adminView == "edit") {
-      let updatedList = productList.map((p) =>
+      updatedList = productList.map((p) =>
         p.id == updatedProduct.id ? updatedProduct : p
       );
       console.log("Edit Form Submit for " + updatedProduct.name);
 
-      setFilteredProductList(updatedList);
-      setProductList(updatedList);
-    }
-    else if(adminView=="add"){
+      // setFilteredProductList(updatedList);
+      // setProductList(updatedList);
+    } else if (adminView == "add") {
       console.log("Add kara ");
-      setProductList([...productList, updatedProduct]);
-      setFilteredProductList([...filteredProductList, updatedProduct]);
-      
+      updatedList = [...productList, updatedProduct];
+      // setProductList([...productList, updatedProduct]);
+      // setFilteredProductList([...filteredProductList, updatedProduct]);
+      console.log("Added Product: ", updatedProduct.name);
     }
+    localStorage.setItem("productList", JSON.stringify(updatedList));
+    setProductList(updatedList);
+    setFilteredProductList(updatedList);
     setUserView("admin");
   }
 
@@ -261,7 +272,6 @@ function Assi66() {
     console.log("Product List Click ");
     setUserView("admin");
   }
-
 
   function handleDeleteButton(card) {
     // console.log("Delete "+card.id);
@@ -271,6 +281,7 @@ function Assi66() {
     );
     console.log(`Delete ${card.name}`);
 
+    localStorage.setItem("productList", JSON.stringify(eleDelete));
     setFilteredProductList(eleDelete);
     setProductList(eleDelete);
 
@@ -279,28 +290,28 @@ function Assi66() {
     setTimeout(() => setMessage(""), 4000);
   }
 
-  function handleCartBtn(){
-    if(userName=="" && cartCount==0){
+  function handleCartBtn() {
+    if (userName == "" && cartCount == 0) {
       console.log("no login no item in cart");
       setUserView("cart");
-    }else if(userName=="" && cartCount>0){
+    } else if (userName == "" && cartCount > 0) {
       console.log("no login item selected in cart");
-      setUserView("loginPage")
-    }else if(userName!="" && (cartCount>0 || cartCount==0)){
+      setUserView("loginPage");
+    } else if (userName != "" && (cartCount > 0 || cartCount == 0)) {
       console.log("login item selected in cart or not selected in cart");
       setUserView("cart");
     }
   }
 
-  function handleCartListClick(){
-    if(userName!=""){
+  function handleCartListClick() {
+    if (userName != "") {
       setUserView("user");
-    }else{
-      setUserView("products"); 
+    } else {
+      setUserView("products");
     }
   }
 
-  function handleCartBack(){
+  function handleCartBack() {
     setUserView("user");
   }
 
@@ -318,7 +329,6 @@ function Assi66() {
         userName={userName}
         onAddProductBtnClick={handleAddProductBtn}
         onCartBtnClick={handleCartBtn}
-
       />
       <div className="container containerMargin">
         <div className="text-center">
@@ -345,19 +355,19 @@ function Assi66() {
         )}
 
         {userView == "admin" && (
-        <div className="container containerMargin1">
-          <div className=" row mt-5 ">
-            {filteredProductList.map((e, i) => (
-              <AdminPage
-                onEditBtn={handleEditButton}
-                onDeleteBtn={handleDeleteButton}
-                card={e}
-                key={i}
-                index={i}
-              />
-            ))}
+          <div className="container containerMargin1">
+            <div className=" row mt-5 ">
+              {filteredProductList.map((e, i) => (
+                <AdminPage
+                  onEditBtn={handleEditButton}
+                  onDeleteBtn={handleDeleteButton}
+                  card={e}
+                  key={i}
+                  index={i}
+                />
+              ))}
+            </div>
           </div>
-        </div>
         )}
 
         {userView == "form" && (
@@ -367,11 +377,11 @@ function Assi66() {
             onProductEditFormSubmit={handleFormSubmit}
             onProductAddFormSubmit={handleFormSubmit}
             onProductListClick={handleProductListClick}
-            // addToBackendProduct={addToBackendProduct} 
+            // addToBackendProduct={addToBackendProduct}
           />
         )}
 
-        {(userView == "products" || userView == "user" ) && (
+        {(userView == "products" || userView == "user") && (
           <div className=" row mt-5 ">
             {filteredProductList.map((e, i) => (
               <CardList
@@ -381,22 +391,21 @@ function Assi66() {
                 key={i}
                 index={i}
                 userView={userView}
-              />             
+              />
             ))}
           </div>
         )}
 
-        {userView == "cart"  && (
+        {userView == "cart" && (
           // <div className="row ">
           <div className="row justify-content-between align-items-center">
             <CartPage
-               onCartAddRemoveProduct={handleCartProduct}
-               cartItems={cartItem}
-               onCartListClick={handleCartListClick}
-               userName={userName}
-               cartCount={cartCount}
-               onCartBack={handleCartBack}
-               
+              onCartAddRemoveProduct={handleCartProduct}
+              cartItems={cartItem}
+              onCartListClick={handleCartListClick}
+              userName={userName}
+              cartCount={cartCount}
+              onCartBack={handleCartBack}
             />
           </div>
         )}
