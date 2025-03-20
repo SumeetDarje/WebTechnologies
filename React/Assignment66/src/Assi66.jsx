@@ -51,24 +51,49 @@ function Assi66() {
     }else{
       setUserView("products");
     }
-    getData();
+
+    let savedCart=localStorage.getItem("cartData");
+    if(savedCart){
+      let parsedCart=JSON.parse(savedCart);
+      setCartItem(parsedCart);
+      setCartCount(parsedCart.length);
+      calTotalPrice(parsedCart);
+    }
+
+    let savedProduct = localStorage.getItem("productList");
+    if (savedProduct){
+      let parsedProduct=JSON.parse(savedProduct);
+      setProductList(parsedProduct);
+      setFilteredProductList(parsedProduct);
+    } 
+    else{
+
+      getData();
+    }
+
+    // getData();
+
   },[]);
 
   function handleAddToCartBtn(selectedIndex, action) {
     console.log(selectedIndex, action);
 
+    let updatedCart = [...cartItem];
     let fprList = filteredProductList.map((e, index) => {
       if (index == selectedIndex) {
         if (action == "addToCart") {
           e.qty = 1;
-          setCartCount(cartCount + 1);
+          // setCartCount(cartCount + 1);
+          updatedCart.push(e);
         } else if (action == "+") {
           e.qty++;
           // setCartCount(cartCount+1);
         } else if (action == "-" && e.qty > 0) {
           e.qty--;
           if (e.qty == 0) {
-            setCartCount(cartCount - 1);
+            // setCartCount(cartCount - 1);
+            updatedCart = updatedCart.filter((item) => item.id !== e.id);
+            updateCartLocalStorage(updatedCart);
           }
         }
         console.log(e.qty);
@@ -77,8 +102,47 @@ function Assi66() {
     });
 
     // setProductList(prList);
+    setCartItem(updatedCart);
+    setCartCount(updatedCart.length)
     setFilteredProductList(fprList);
-    calTotalPrice();
+    calTotalPrice(updatedCart);
+    updateCartLocalStorage(updatedCart);
+  }
+
+  function handleCartProduct(selectedIndex, action){
+    let updatedCart=[...cartItem];
+    let item = updatedCart[selectedIndex];
+
+    if(item){
+      if(action == "+"){
+        item.qty++;
+      }else if(action == "-" && item.qty>0){
+        item.qty--;
+
+        if(item.qty==0){
+          updatedCart=updatedCart.filter((e,index)=>index != selectedIndex);
+          updateCartLocalStorage(updatedCart);
+        }
+      }
+    }
+    setCartItem(updatedCart);
+    setCartCount(updatedCart.length);
+    calTotalPrice(updatedCart);
+    updateCartLocalStorage(updatedCart);
+  }
+
+  function updateCartLocalStorage(updatedCart){
+    localStorage.setItem("cartData",JSON.stringify(updatedCart));
+    // localStorage.setItem("user",JSON.stringify())  
+  }
+
+  function calTotalPrice(cartData) {
+    // const total = productList.reduce(
+    const total = cartData.reduce(
+    (sum, item) => sum + item.mrp * item.qty,
+      0
+    );
+    setTotalPrice(total);
   }
 
   function handleSearch(search) {
@@ -88,13 +152,6 @@ function Assi66() {
     setFilteredProductList(filterSearch);
   }
 
-  function calTotalPrice() {
-    const total = productList.reduce(
-      (sum, item) => sum + item.mrp * item.qty,
-      0
-    );
-    setTotalPrice(total);
-  }
 
   // useEffect(() => {
     
@@ -111,6 +168,7 @@ function Assi66() {
     let fList = await response.data;
     // setLoadFlag(false);
     console.log("Loaded " + fList.length);
+    localStorage.setItem("productList",JSON.stringify(fList));
     setProductList(fList);
     setFilteredProductList(fList);
   }
@@ -159,8 +217,10 @@ function Assi66() {
     localStorage.removeItem("user");
     setUserView("products");
     setUserName("");  
-    // setCartCount(0);
+    setCartCount(0);
+    setTotalPrice(0);
     setCartItem([]);
+    localStorage.removeItem("cartData");
     console.log("logout");
   }
 
@@ -330,11 +390,13 @@ function Assi66() {
           // <div className="row ">
           <div className="row justify-content-between align-items-center">
             <CartPage
+               onCartAddRemoveProduct={handleCartProduct}
+               cartItems={cartItem}
                onCartListClick={handleCartListClick}
                userName={userName}
                cartCount={cartCount}
                onCartBack={handleCartBack}
-
+               
             />
           </div>
         )}
