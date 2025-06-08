@@ -65,6 +65,21 @@
   border-radius: 5px;
 }
 
+.cartBorder{
+  border: red solid 1px;
+  
+}
+
+.textBold{
+  font-weight: bold;
+}
+
+/* BillInvoice css */
+.billInvoiceBox{
+  max-width: 700px;
+  margin: auto;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

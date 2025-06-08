@@ -27,7 +27,7 @@
       "name": "Apple",
       "image": "apple.jpg",
       "unit": "kg",
-      "mrp": 180,
+      "mrp": "190",
       "discount": "7",
       "inStock": true,
       "qty": 0,
@@ -38,7 +38,7 @@
       "name": "Strawberry",
       "image": "strawberry.jpg",
       "unit": "kg",
-      "mrp": 200,
+      "mrp": "210",
       "discount": "20",
       "inStock": true,
       "qty": 0,
@@ -209,7 +209,21 @@
       "id": "f43e",
       "name": "Kshitij",
       "emailid": "kshitij@gmail.com",
-      "password": "123456",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "309e",
+      "name": "Rutuja",
+      "emailid": "rutuja@gmail.com",
+      "password": "11111",
+      "role": "user"
+    },
+    {
+      "id": "e1ff",
+      "name": "Hema",
+      "emailid": "hema@gmail.com",
+      "password": "12345",
       "role": "user"
     }
   ]

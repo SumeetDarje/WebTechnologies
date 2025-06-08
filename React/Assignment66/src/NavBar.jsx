@@ -71,7 +71,7 @@ function NavBar(props) {
                   Logout
                 </button>
             </>
-          ): (userView =="user" || storedUserView=="user" || userView=="cart") && userName!="" ? (
+          ): (userView =="user" || storedUserView=="user" || userView=="cart" || userView=="invoice") && userName!="" ? (
             <>
                <span className="text-white fw-bold me-3">Welcome, {storedUserName || userName}</span>
                 <button className="btn bg-white" onClick={onlogout}>

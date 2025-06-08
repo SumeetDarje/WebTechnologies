@@ -1,5 +1,5 @@
 import NavBar from "./NavBar";
-import CardList from "./CardPage";
+import CardList from "./CardList";
 import { useEffect, useState } from "react";
 import SignupPage from "./SignUpPage";
 import LoginPage from "./LoginPage";
