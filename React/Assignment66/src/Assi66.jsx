@@ -8,6 +8,7 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import AdminProductFormSample from "./AdminProductForm";
 import CartPage from "./CartPage";
+import BillInvoice from "./BillInvoice";
 
 function Assi66() {
   let [productList, setProductList] = useState([]);
@@ -147,9 +148,11 @@ function Assi66() {
   }
 
   function calTotalPrice(cartData) {
-    // const total = productList.reduce(
-    const total = cartData.reduce((sum, item) => sum + item.mrp * item.qty, 0);
-    setTotalPrice(total);
+    const total = cartData.reduce((sum, item) => {
+      const discountedPrice = item.mrp - (item.mrp * item.discount) / 100;
+      return sum + discountedPrice * item.qty;
+    }, 0);
+    setTotalPrice(parseFloat(total).toFixed(2));
   }
 
   function handleSearch(search) {
@@ -315,6 +318,10 @@ function Assi66() {
     setUserView("user");
   }
 
+  function handleShowInvoice() {
+    setUserView("invoice");
+  }
+
   return (
     <>
       <NavBar
@@ -406,8 +413,17 @@ function Assi66() {
               userName={userName}
               cartCount={cartCount}
               onCartBack={handleCartBack}
+              onhandleShowInvoiceClick={handleShowInvoice}
             />
           </div>
+        )}
+
+        {userView == "invoice" && (
+          <BillInvoice
+            userName={userName}
+            cartItems={cartItem}
+            totalPrice={totalPrice}
+          />
         )}
       </div>
     </>
