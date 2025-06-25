@@ -18,7 +18,7 @@ function CardList(props) {
 
   return (
     <>
-      <div className=" col-lg-3 col-sm-12 col-md-6  text-center p-3 mb-4 myBorder">
+      <div className=" col-lg-3 col-sm-6 col-md-6 col-6 text-center p-3 mb-4 myBorder">
         <div>
           <img className="img-fluid" src={`/images/${card.image}`} alt="" />
         </div>
